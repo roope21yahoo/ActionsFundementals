@@ -1,10 +1,22 @@
 name: GitHub Actions Demo
 on: 
   push:
-   branches: main   
+   branches: main
+   paths-ignore: [.github/**]
   workflow_dispatch:
   pull_request:
     branches: main
   schedule:
     - cron: 15 06 * * Sun
-  
+    
+jobs:
+  Build:   
+   runs-on: ubuntu-latest
+   steps:
+     - run: |
+         echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+         echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
+     - name: List of directories
+       run: |
+         echo "The repository ${{ github.repository }} contains the following files:"
+         tree
